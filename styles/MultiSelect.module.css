@@ -1,0 +1,48 @@
+.multiselect_selected {
+  padding: 0 1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.fba {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.multiselect_options {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid black;
+  background-color: white;
+}
+.multiselect_options .ul_unselected:hover {
+  background-color: #fafafa;
+}
+.multiselect_options .ul_selected{
+    background-color: #2B5DF5;
+    color: #fff;
+}
+.multiselect_options .ul_selected:hover{
+    background-color: #224ac2;
+}
+.multiselect_options .ul_unselected{
+    background-color: #fff;
+}
+
+
+.multiselect_options ul {
+  margin: 0;
+  font-size: large;
+  padding: 0;
+  border-bottom: 1px solid black;
+  padding: 1rem;
+}
+.multiselect_options ul:last-child {
+  border: none;
+}

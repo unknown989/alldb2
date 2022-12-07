@@ -1,0 +1,23 @@
+.input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input input{
+    padding-left: 1rem;
+    width: 40%;
+    height: 3rem;
+    outline: 0;
+    border: 1px solid #333;
+    font-family: Cairo;
+    border-radius: 4px;
+}
+
+.input input:focus{
+    border:2px solid #2B5DF5 ;
+    color:#2B5DF5 ;
+}
+.form_div{
+    text-align: center;
+}

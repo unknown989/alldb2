@@ -1,0 +1,31 @@
+.multifileselector_details {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  padding: 4px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 1rem;
+}
+.multifileselector_details_elements {
+  display: flex;
+  gap: 1rem;
+}
+.multifileselector_details_icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.image {
+  width: 3rem;
+  aspect-ratio: 1/1;
+}
+.images {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

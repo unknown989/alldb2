@@ -11,10 +11,10 @@ export default function Home() {
         <h2>Choose an action:</h2>
         <div className={styles.buttons}>
           <Link href={"/add"}>
-            <button className={styles.button}>Add a person</button>
+            <button className={"button"}>Add a person</button>
           </Link>
           <Link href={"/navigate"}>
-            <button className={styles.button}>Navigate people</button>
+            <button className={"button"}>Navigate people</button>
           </Link>
         </div>
       </div>

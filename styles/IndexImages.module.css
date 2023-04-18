@@ -1,0 +1,15 @@
+.images_container {
+  display: grid;
+  user-select: none;
+  place-content: center;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+}
+
+.image_container {
+  overflow: hidden;
+  width: 20rem;
+}
+.image_container img {
+  width: 20rem;
+}

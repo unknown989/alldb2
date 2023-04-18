@@ -11,17 +11,24 @@ export type SingleSelectElementProp = {
 export type SingleSelectProps = {
   placeholder: string;
   elements: SingleSelectElementProp[];
+  initial_index?: number; // The id of the selected value (by default) in the elements string
   onChange: Function;
 };
 
 function SingleSelect(props: SingleSelectProps) {
-  const [selected, setSelected] = useState<Number>();
+  if (props.initial_index === undefined) {
+    props.initial_index = -1;
+  }
+  const [selected, setSelected] = useState<Number>(props.initial_index);
   const [toggle, setToggle] = useState(false);
-  const compRef = useRef(null);
+  const compRef = useRef<HTMLDivElement>(null);
 
+  // State changing
   useEffect(() => {
     props.onChange(props.elements.find((e) => e.id === selected));
   }, [selected]);
+
+  // Handle clicking outside of element
   const handleClick = (ev: Event) => {
     if (compRef.current && !compRef.current.contains(ev.target)) {
       setToggle(false);
@@ -33,6 +40,7 @@ function SingleSelect(props: SingleSelectProps) {
       document.removeEventListener("mousedown", handleClick);
     };
   }, [compRef]);
+
   return (
     <div className={styles.multiselect} ref={compRef}>
       <div
@@ -60,7 +68,7 @@ function SingleSelect(props: SingleSelectProps) {
                 className={
                   selected === e.id ? styles.ul_selected : styles.ul_unselected
                 }
-                onClick={(ev) => {
+                onClick={() => {
                   setSelected(e.id);
                 }}
               >

@@ -42,7 +42,7 @@
 .person_fabutton_red:active {
   transform: scale(110%);
 }
-.person_fabutton{
+.person_fabutton {
   cursor: pointer;
   width: 48px;
   height: 48px;
@@ -88,14 +88,18 @@
   text-align: center;
 }
 
-.person_images_container{
+.person_images_container {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(20rem, 1fr));
 }
-.person_image{
+.person_image {
+  width: 100%;
   transition: 200ms cubic-bezier(0.19, 1, 0.22, 1);
 }
-.person_image:hover{
+.person_image img {
+  width: 100%;
+}
+.person_image:hover {
   transform: scale(110%);
 }

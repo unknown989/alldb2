@@ -4,6 +4,7 @@ import Navigation from "../../components/Navigation";
 import styles from "../../styles/PersonPerson.module.css";
 import { IconPencil, IconTrash } from "@tabler/icons";
 import Link from "next/link";
+import FieldViewer from "../../components/FieldViewer";
 
 type PersonProps = {
   person: People;
@@ -22,26 +23,16 @@ export async function getServerSideProps(context: any) {
   };
 }
 
-type FieldViewerProps = {
-  label: string;
-  value: any;
-};
-function FieldViewer({ label, value }: FieldViewerProps) {
-  return (
-    <div className="input">
-      <label>{label}</label>
-      <input type={"text"} readOnly value={value} />
-    </div>
-  );
-}
-
 function Person({ person }: PersonProps) {
-  console.log(person.details);
-  const details = JSON.parse(person.details?.toString() || "");
-  /*TODO:
-       - Implement '/image/[id]' route
-       - Implement '/images/' route
-  */
+  
+  let details;
+  if (person.details instanceof String || typeof person.details === "string") {
+    details = JSON.parse(person.details.toString() || "");
+  } else {
+    details = person.details;
+  }
+
+
   return (
     <div>
       <Navigation />
@@ -50,6 +41,9 @@ function Person({ person }: PersonProps) {
           <div
             className={styles.person_fabutton}
             style={{ backgroundColor: "#ff2d55" }}
+            onClick={() => {
+              alert("this should delete this record, buut it doesn't :<");
+            }}
           >
             <IconTrash />
           </div>

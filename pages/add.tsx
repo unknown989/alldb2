@@ -30,7 +30,7 @@ function step_one({ states }: StepProps) {
           onChange={(e) => states[0].setter(e.target.value)}
           id="i1"
           type={"text"}
-          placeholder="Username..."
+          placeholder="Call me something :)"
         ></input>
       </div>
       <div className={styles.input}>
@@ -40,7 +40,7 @@ function step_one({ states }: StepProps) {
           onChange={(e) => states[1].setter(e.target.value)}
           id="i2"
           type={"text"}
-          placeholder="Username..."
+          placeholder="What do friends call me ?"
         ></input>
       </div>
       <div className={styles.input}>
@@ -50,7 +50,7 @@ function step_one({ states }: StepProps) {
           onChange={(e) => states[2].setter(e.target.value)}
           id="i3"
           type={"text"}
-          placeholder="Lastname..."
+          placeholder="What do teachers call me?"
         ></input>
       </div>
     </div>
@@ -73,7 +73,21 @@ function step_two({ states }: StepProps) {
           { id: 0, label: "Female", value: "female" },
           { id: 1, label: "Male", value: "male" },
         ]}
-        placeholder={"Select a sex..."}
+        placeholder={"What am I?"}
+        initial_index={(function (): number {
+          let rv = -1;
+          switch (states[1].value?.value || "") {
+            case "female":
+              rv = 0;
+              break;
+            case "male":
+              rv = 1;
+              break;
+            default:
+              break;
+          }
+          return rv;
+        })()}
         onChange={(v: SingleSelectElementProp) => {
           states[1].setter(v);
         }}
@@ -87,7 +101,7 @@ function step_three({ states }: StepProps) {
     <div>
       <label htmlFor="s1">Profile Image...</label>
       <SingleFileSelector
-        placeholder={"Select a profile image..."}
+        placeholder={"Give me a picture :)"}
         onChange={(image: string) => {
           states[0].setter(image);
         }}
@@ -95,7 +109,6 @@ function step_three({ states }: StepProps) {
       />
       {/*
         TODO:
-          - Add Details form
           - Connect to Backend
       */}
       <label htmlFor="s2">Images</label>
@@ -113,6 +126,9 @@ function step_four() {
   return (
     <div>
       <p>Details</p>
+      {/* TODO:
+            - Add Details to creation process
+      */}
     </div>
   );
 }

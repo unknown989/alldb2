@@ -10,7 +10,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  let p: PrismaClient = prisma;
-  
-  res.status(200).json({ people: await p.people.findMany() })
+   
+  res.status(200).json({ people: await prisma.people.findMany() })
 }

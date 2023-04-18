@@ -11,6 +11,7 @@
 .multifileselector_details_elements {
   display: flex;
   gap: 1rem;
+  overflow: hidden;
 }
 .multifileselector_details_icons {
   display: flex;
@@ -24,6 +25,7 @@
   aspect-ratio: 1/1;
 }
 .images {
+  /* width: 100%; */
   overflow: hidden;
   display: flex;
   justify-content: center;

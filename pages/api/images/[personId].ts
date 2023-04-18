@@ -1,11 +1,12 @@
-import { People, PrismaClient } from '@prisma/client';
+import { Image } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import prisma from "../../../lib/db.server";
 
 type Data = {
-    person: People | null,
-    message: string;
+    images: Image[]
+    message: string
 }
+
 
 export default async function handler(
     req: NextApiRequest,
@@ -16,21 +17,20 @@ export default async function handler(
         where: {
             id: personId?.toString(),
         },
-        include: {
+        select: {
             images: true,
         }
-    })
+    });
+
     if (data === null) {
-        res.status(500).json({
-            person: null,
-            message: "Cannot find person"
-        });
+        res.status(404).json({ images: [], message: "Cannot find the person " })
     } else {
         res.status(200).json(
             {
-                person: data,
+                images: data.images,
                 message: ""
             }
         )
     }
 }
+

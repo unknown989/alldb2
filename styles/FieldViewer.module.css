@@ -1,0 +1,12 @@
+.field_viewer_element {
+  width: 100%;
+  outline: 0;
+  font-family: Cairo;
+  border-radius: 4px;
+}
+/* .field_viewer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: larger;
+} */

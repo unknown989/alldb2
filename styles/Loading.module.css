@@ -1,0 +1,42 @@
+.loading {
+  position: fixed;
+  z-index: 100;
+  width: 10rem;
+  height: 10rem;
+  background-color: #eee;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 1rem;
+}
+
+@keyframes loading_icon_loader_animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading_icon_loader {
+  animation: loading_icon_loader_animation 1s
+    cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+.loading_icon {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.loading_text {
+  font-weight: 300;
+}
+.loading_cover {
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(#0004, #0009);
+}

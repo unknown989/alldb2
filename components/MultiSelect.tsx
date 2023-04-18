@@ -12,6 +12,9 @@ export type MultiSelectProps = {
   elements: MultiSelectElementProp[];
   onChange: Function;
 };
+/* TODO:
+      - Implement creating elements
+*/
 
 function MultiSelect(props: MultiSelectProps) {
   const [selected, setSelected] = useState<Number[]>([]);

@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **AllDB 2** - The newest version of the AllDB project
 
-## Getting Started
+<img src="./public/alldb-text.svg">
 
-First, run the development server:
+## **AllDB** is a web project that allows me to store humans data like their images, sex, name, username, social media...
 
-```bash
-npm run dev
-# or
-yarn dev
+
+# How to run me?
+Before running AllDB locally, you must set up a PostgreSQL database, I recommend using AWS
+
+after doing so, add it to `.env` like that
+```toml
+DATABASE_URL="..."
+```
+then run the following
+```sh
+$ yarn
+$ prisma db push
+$ prisma generate
+$ yarn dev ('start' for production)
+```
+OR
+```sh
+$ npm install
+$ npx prisma db push
+$ npx prisma generate
+$ npm run dev ('start' for production)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Improvements
+This version came to improve two specific things over the first version
+- Allowing images to be uploaded so that it stores the image url in the database instead of the base64 encoding, because it takes a large amount of time and storage to store.
+- Improving the UI to look more fresh by using NextJS
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Notes
+Honestly I don't think changing the framework was a wise decision because It was not really productive to work using NextJS, for this reason, the next version(if there is one) might use Remix again
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# Advices for V3
+- Design the UI before the coding
+- Build an API to handle errors better
+- Add more features like adding videos, documents...
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Contact
+Feel free to contact me at unknown989@proton.me

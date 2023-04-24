@@ -6,11 +6,11 @@ import styles from "../../styles/ImageImages.module.css";
 export async function getServerSideProps(context: any) {
   const { personId } = context.query;
   const data = await (
-    await fetch(process.env["URL"] + "/api/images/" + personId)
+    await fetch("/api/images/" + personId)
   ).json();
 
   const name = await (
-    await fetch(process.env["URL"] + "/api/get/" + personId)
+    await fetch("/api/get/" + personId)
   ).json();
   console.log(name);
   

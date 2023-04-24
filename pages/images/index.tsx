@@ -4,7 +4,7 @@ import Navigation from "../../components/Navigation";
 import styles from "../../styles/IndexImages.module.css";
 
 export async function getServerSideProps() {
-  const data = await (await fetch(process.env["URL"] + "/api/images/")).json();
+  const data = await (await fetch("/api/images/")).json();
   return {
     props: {
       images: data.images,

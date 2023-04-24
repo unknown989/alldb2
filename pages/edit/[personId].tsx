@@ -30,7 +30,7 @@ type PersonProps = {
 export async function getServerSideProps(context: any) {
   const { personId } = context.query;
   const data = await (
-    await fetch(process.env["URL"] + "/api/get/" + personId)
+    await fetch("/api/get/" + personId)
   ).json();
 
   return {

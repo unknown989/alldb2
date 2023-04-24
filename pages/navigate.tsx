@@ -10,7 +10,7 @@ type navigateProps = {
 };
 
 export async function getServerSideProps() {
-  const data = await (await fetch(process.env["URL"] + "/api/getall")).json();
+  const data = await (await fetch("/api/getall")).json();
 
   return {
     props: { people: data.people },

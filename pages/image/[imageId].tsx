@@ -6,7 +6,7 @@ import Navigation from "../../components/Navigation";
 export async function getServerSideProps(context: any) {
   const { imageId } = context.query;
   const data = await (
-    await fetch(process.env["URL"] + "/api/image/" + imageId)
+    await fetch( "/api/image/" + imageId)
   ).json();
 
   return {

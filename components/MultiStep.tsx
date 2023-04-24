@@ -10,9 +10,10 @@ type MultiStepElement = {
 
 type MultiStepProps = {
   elements: MultiStepElement[];
+  onSubmit: Function;
 };
 
-function MultiStep({ elements }: MultiStepProps) {
+function MultiStep({ elements, onSubmit }: MultiStepProps) {
   const [currStep, setCurrStep] = useState(0);
   return (
     <div>
@@ -46,6 +47,7 @@ function MultiStep({ elements }: MultiStepProps) {
       <div className={styles.buttons}>
         <button
           className="button"
+          disabled={currStep === 0}
           onClick={() => {
             setCurrStep(Math.max(0, currStep - 1));
           }}
@@ -55,10 +57,14 @@ function MultiStep({ elements }: MultiStepProps) {
         <button
           className="button"
           onClick={() => {
-            setCurrStep(Math.min(elements.length - 1, currStep + 1));
+            if (currStep === elements.length - 1) {
+              onSubmit();
+            } else {
+              setCurrStep(Math.min(elements.length - 1, currStep + 1));
+            }
           }}
         >
-          Next
+          {currStep === elements.length - 1 ? "Submit" : "Next"}
         </button>
       </div>
     </div>

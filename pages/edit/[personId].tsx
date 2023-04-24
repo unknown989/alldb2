@@ -145,12 +145,14 @@ function Person({ person }: PersonProps) {
     };
 
     const res = await (await fetch(url, options)).json().catch((err) => {
+      setShowModalError(true);
       console.error(err);
     });
 
     if (res.status === 200) {
       thresh++;
     } else {
+      setShowModalError(true);
       console.log(res.message);
     }
 

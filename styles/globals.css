@@ -41,6 +41,11 @@ button.button:hover {
 button.button:active {
   transform: scale(105%);
 }
+button.button:disabled{
+  opacity: 0.7;
+  pointer-events: none;
+  user-select: none;
+}
 
 .input {
   display: flex;

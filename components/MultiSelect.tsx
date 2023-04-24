@@ -22,17 +22,13 @@ function MultiSelect(props: MultiSelectProps) {
   const compRef = useRef(null);
 
   useEffect(() => {
-    let tmp: MultiSelectElementProp[] = [];
+    let tmp: string[] = [];
     selected.forEach((v) => {
       const t = props.elements.find((r) => r.id == v);
       if (!t) {
         return;
       }
-      tmp.push({
-        id: t.id,
-        label: t.label,
-        value: t.value,
-      });
+      tmp.push(t.value);
     });
     props.onChange(tmp);
   }, [selected]);

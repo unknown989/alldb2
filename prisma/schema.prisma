@@ -26,7 +26,7 @@ model Image {
   id        String   @id @unique @default(uuid())
   data      String
   ownerid   String
-  owner     People   @relation(fields: [ownerid], references: [id])
+  owner     People   @relation(fields: [ownerid], references: [id], onDelete: Cascade)
   details   Json?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

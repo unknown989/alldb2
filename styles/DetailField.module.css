@@ -1,0 +1,19 @@
+.detail_field {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.delete_button {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff2d55;
+  border-radius: 100rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}

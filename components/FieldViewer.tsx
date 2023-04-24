@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ChangeEvent, ReactElement } from "react";
 import styles from "../styles/FieldViewer.module.css";
 
 type FieldViewerProps = {
@@ -13,7 +13,7 @@ export default function FieldViewer({
   value,
   element,
   onChange = () => {},
-  readOnly = true,
+  readOnly = false,
 }: FieldViewerProps) {
   if (element !== undefined) {
     return (
@@ -34,7 +34,7 @@ export default function FieldViewer({
           type={"text"}
           readOnly={readOnly}
           value={value}
-          onChange={(e) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             if (!readOnly) onChange(e.target.value);
           }}
         />

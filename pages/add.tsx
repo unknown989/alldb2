@@ -1,7 +1,13 @@
-import { IconUser, IconSelector, IconPhotoUp, IconId } from "@tabler/icons";
+import {
+  IconUser,
+  IconSelector,
+  IconPhotoUp,
+  IconId,
+  IconCheck,
+  IconX,
+} from "@tabler/icons";
 import { useState } from "react";
 import MultiSelect from "../components/MultiSelect";
-import type { MultiSelectElementProp } from "../components/MultiSelect";
 import MultiStep from "../components/MultiStep";
 import Navigation from "../components/Navigation";
 import styles from "../styles/Add.module.css";
@@ -10,6 +16,9 @@ import SingleSelect, {
 } from "../components/SingleSelect";
 import SingleFileSelector from "../components/SingleFileSelector";
 import MultiFileSelector from "../components/MultiFileSelector";
+import DetailsComponent, { DetailsType } from "../components/Details";
+import { useLoading } from "../hooks/useLoading";
+import { useModal } from "../hooks/useModal";
 
 type StepStateProp = {
   value: any;
@@ -65,7 +74,7 @@ function step_two({ states }: StepProps) {
           { id: 0, label: "Strong", value: "strong" },
           { id: 1, label: "Weak", value: "weak" },
         ]}
-        onChange={(v: MultiSelectElementProp[]) => states[0].setter(v)}
+        onChange={(v: string[]) => states[0].setter(v)}
       />
       <label>Select a sex...</label>
       <SingleSelect
@@ -122,13 +131,14 @@ function step_three({ states }: StepProps) {
     </div>
   );
 }
-function step_four() {
+
+function step_four(props: StepProps) {
   return (
-    <div>
-      <p>Details</p>
-      {/* TODO:
-            - Add Details to creation process
-      */}
+    <div className={styles.step_four}>
+      <DetailsComponent
+        onChange={props.states[0].setter}
+        value={props.states[0].value}
+      />
     </div>
   );
 }
@@ -138,16 +148,110 @@ export default function add() {
   const [first, setFirst] = useState("");
   const [last, setLast] = useState("");
 
-  const [keywords, setKeywords] = useState([]);
+  const [keywords, setKeywords] = useState<string[]>([]);
   const [sex, setSex] = useState<SingleSelectElementProp>();
 
   const [profileImage, setProfileImage] = useState("");
   const [images, setImages] = useState<string[]>([]);
+  const [details, setDetails] = useState<DetailsType[]>([]);
+
+  const [LoadingComponent, setIsLoading] = useLoading();
+  const [ModalSuccessComponent, setShowModalSuccess] = useModal({
+    text: "Added Successfully",
+    description: "Hooray, that went smoothly",
+    icon: (
+      <div
+        style={{
+          backgroundColor: "#34c759",
+          width: "6rem",
+          height: "6rem",
+          borderRadius: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <IconCheck size={64} color="white" />
+      </div>
+    ),
+    buttons: [
+      {
+        color: "#34c759",
+        onClick: () => {
+          setShowModalSuccess(false);
+        },
+        text: "Ok :)",
+      },
+    ],
+  });
+  const [ModalErrorComponent, setShowModalError] = useModal({
+    text: "Oops, That ain't good",
+    description: "Check the console for the detailed error stack.",
+    icon: (
+      <div
+        style={{
+          backgroundColor: "#ff3b30",
+          width: "6rem",
+          height: "6rem",
+          borderRadius: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <IconX size={64} color="white" />
+      </div>
+    ),
+    buttons: [
+      {
+        color: "#ff3b30",
+        onClick: () => {
+          setShowModalError(false);
+        },
+        text: "Ok :(",
+      },
+    ],
+  });
+
+  const addPersonHandler = async () => {
+    setIsLoading(true);
+    const url = "/api/add/person";
+    const body = {
+      username: user,
+      firstname: first,
+      lastname: last,
+      keywords: keywords,
+      sex: sex?.value,
+      profileimage: profileImage,
+      images,
+      details,
+    };
+    console.log(body);
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    await fetch(url, options).catch((err) => {
+      setShowModalError(true);
+      console.error(err);
+    });
+    setIsLoading(false);
+    setShowModalSuccess(true);
+  };
 
   return (
     <div>
       <Navigation />
+      {<LoadingComponent />}
+      {<ModalErrorComponent />}
+      {<ModalSuccessComponent />}
       <MultiStep
+        onSubmit={addPersonHandler}
         elements={[
           {
             component: step_one({
@@ -181,7 +285,9 @@ export default function add() {
             title: "Images",
           },
           {
-            component: step_four(),
+            component: step_four({
+              states: [{ setter: setDetails, value: details }],
+            }),
             icon: <IconId size={32} />,
             title: "Details",
           },

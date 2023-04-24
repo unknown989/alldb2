@@ -17,14 +17,14 @@ then run the following
 $ yarn
 $ prisma db push
 $ prisma generate
-$ yarn dev ('start' for production)
+$ yarn dev
 ```
 OR
 ```sh
 $ npm install
 $ npx prisma db push
 $ npx prisma generate
-$ npm run dev ('start' for production)
+$ npm run dev
 ```
 
 # Improvements
